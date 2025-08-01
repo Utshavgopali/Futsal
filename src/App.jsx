@@ -5,6 +5,7 @@ import CourtsPage from './components/CourtsPage';
 import BookingPage from './components/BookingPage';
 import ProfilePage from './components/ProfilePage';
 import ContactPage from './components/ContactPage';
+import HomePage from './components/HomePage';
 import { courts, timeSlots } from './data/mockData';
 
 function App() {
@@ -46,7 +47,13 @@ function App() {
   };
 
   const handleBooking = () => {
-    if (!selectedCourt || !selectedDate || !selectedTimeSlot || !bookingForm.playerName || !bookingForm.phone) {
+    if (
+      !selectedCourt ||
+      !selectedDate ||
+      !selectedTimeSlot ||
+      !bookingForm.playerName ||
+      !bookingForm.phone
+    ) {
       alert('Please fill all required fields');
       return;
     }
@@ -125,7 +132,15 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation {...appState} />
+      <Navigation
+        currentView={currentView}
+        setCurrentView={setCurrentView}
+        showAuthModal={showAuthModal}
+        setShowAuthModal={setShowAuthModal}
+        isLoggedIn={isLoggedIn}
+        userName={userName}
+        handleLogout={handleLogout}
+      />
       <AuthModal
         isOpen={showAuthModal}
         onClose={() => setShowAuthModal(false)}
